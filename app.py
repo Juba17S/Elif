@@ -8,7 +8,7 @@ st.set_page_config(page_title="هدية خاصة لـ إيلاف ✨", page_icon
 
 TELEGRAM_TOKEN = "8623658853:AAFo5okW0IZF-5sFYEiQ7-7T9GWOkzlUghI"
 # ✏️ ضع الـ CHAT_ID الخاص بك هنا لكي تصلك التقارير على تليجرام:
-MY_CHAT_ID = "8623658853"
+MY_CHAT_ID = "8279656170"
 
 def send_telegram_report(message_text):
     if MY_CHAT_ID == "YOUR_CHAT_ID_HERE":
