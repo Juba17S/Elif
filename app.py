@@ -8,7 +8,7 @@ st.set_page_config(page_title="هدية خاصة لـ إيلاف ✨", page_icon
 
 TELEGRAM_TOKEN = "8623658853:AAFo5okW0IZF-5sFYEiQ7-7T9GWOkzlUghI"
 # ✏️ ضع الـ CHAT_ID الخاص بك هنا لكي تصلك التقارير على تليجرام:
-MY_CHAT_ID = "YOUR_CHAT_ID_HERE"
+MY_CHAT_ID = "8623658853"
 
 def send_telegram_report(message_text):
     if MY_CHAT_ID == "YOUR_CHAT_ID_HERE":
@@ -69,7 +69,7 @@ def show_popup_msg(title, text, emoji):
     st.markdown(f"<h1 style='text-align: center;'>{emoji}</h1>", unsafe_allow_html=True)
     st.markdown(f"<h3 style='text-align: center; color: #e11d48;'>{title}</h3>", unsafe_allow_html=True)
     st.markdown(f"<p style='text-align: center; font-size: 19px; color: #0f172a; font-weight: bold;'>{text}</p>", unsafe_allow_html=True)
-    if st.button("حسناً يا غالية 🌸", use_container_width=True, type="primary"):
+    if st.button("حسناً اقنعتني 😁 🌸", use_container_width=True, type="primary"):
         st.rerun()
 
 # --- الشاشة الأولى (مع زر لا المراوغ والهارب) ---
