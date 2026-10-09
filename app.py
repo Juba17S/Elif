@@ -22,7 +22,7 @@ def send_telegram_report(message_text):
     except Exception:
         pass
 
-# --- إدارة الجلسة المتغيرات ---
+# --- إدارة الجلسة والمتغيرات ---
 if "page" not in st.session_state:
     st.session_state.page = "first"
 if "no_count" not in st.session_state:
@@ -72,7 +72,7 @@ def show_popup_msg(title, text, emoji):
     if st.button("حسناً يا غالية 🌸", use_container_width=True, type="primary"):
         st.rerun()
 
-# --- الشاشة الأولى (مع زر لا يهرب وصغير) ---
+# --- الشاشة الأولى (مع زر لا المراوغ والهارب) ---
 if st.session_state.page == "first":
     st.markdown('''
     <div class="card-3d">
@@ -84,34 +84,23 @@ if st.session_state.page == "first":
     <br>
     ''', unsafe_allow_html=True)
 
-    # زر "لا" التفاعلي الهارب عبر JS
-    col1, col2 = st.columns([2, 1])
+    # قائمة نصوص مراوغة لزر "لا" في كل محاولة
+    no_texts = ["لا ❌", "ما تگدرين 😜", "وين رايحة؟ 😂", "جربي ثانية 🙈", "مستحيل 🤪"]
+    current_no_text = no_texts[st.session_state.no_count % len(no_texts)]
+
+    # توزيع المكان بناءً على محاولات زر لا ليعطي شعور الحركة والتنقل
+    cols_layout = [2, 1] if st.session_state.no_count % 2 == 0 else [1, 2]
+    col1, col2 = st.columns(cols_layout)
+
     with col1:
         if st.button("نعم 💖", type="primary", use_container_width=True):
             st.session_state.page = "options"
             st.rerun()
+            
     with col2:
-        if st.button("لا ❌", use_container_width=True):
+        if st.button(current_no_text, use_container_width=True):
             st.session_state.no_count += 1
             st.rerun()
-
-    # إضافة كود لجعل زر لا يتحرك ويرب عند الاقتراب منه
-    st.components.v1.html("""
-    <script>
-        const buttons = window.parent.document.querySelectorAll('button');
-        buttons.forEach(btn => {
-            if(btn.innerText.includes('لا ❌')) {
-                btn.style.position = 'relative';
-                btn.style.transition = 'all 0.15s ease';
-                btn.addEventListener('mouseover', function() {
-                    const x = (Math.random() - 0.5) * 200;
-                    const y = (Math.random() - 0.5) * 80;
-                    btn.style.transform = `translate(${x}px, ${y}px)`;
-                });
-            }
-        });
-    </script>
-    """, height=0)
 
 # --- الشاشة الثانية (اختيار الهدايا مع النوافذ المنبثقة) ---
 elif st.session_state.page == "options":
